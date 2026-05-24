@@ -30,50 +30,50 @@ export const en = {
     // Step 3
     {
       label: 'STEP 3 OF 11',
-      title: 'Core Features',
-      description: 'Select all the features you\'d like your application to include.',
+      title: 'Login & Authentication',
+      description: 'Select the login and account options you\'d like your app to support.',
     },
     // Step 4
     {
       label: 'STEP 4 OF 11',
-      title: 'Operational Complexity',
-      description: 'These questions help us measure the true scope of your project.',
+      title: 'App Features',
+      description: 'Select all the features you\'d like your application to include.',
     },
     // Step 5
     {
       label: 'STEP 5 OF 11',
-      title: 'External Integrations',
-      description: 'Does your app need to connect with any existing systems or services? You may skip this step.',
+      title: 'Operational Complexity',
+      description: 'These questions help us measure the true scope of your project.',
     },
     // Step 6
     {
       label: 'STEP 6 OF 11',
-      title: 'Design & Experience',
-      description: 'Tell us about the visual and UX requirements for your project.',
+      title: 'External Integrations',
+      description: 'Does your app need to connect with any existing systems or services? You may skip this step.',
     },
     // Step 7
     {
       label: 'STEP 7 OF 11',
-      title: 'Content & Administration',
-      description: 'Tell us about content management needs. You may skip this step.',
+      title: 'Design & Experience',
+      description: 'Tell us about the visual and UX requirements for your project.',
     },
     // Step 8
     {
       label: 'STEP 8 OF 11',
-      title: 'Infrastructure',
-      description: 'Let us know about hosting and technical infrastructure needs. You may skip this step.',
+      title: 'Content & Administration',
+      description: 'Tell us about content management needs. You may skip this step.',
     },
     // Step 9
     {
       label: 'STEP 9 OF 11',
-      title: 'Timeline & Priority',
-      description: 'Share any deadlines or urgency around your project. You may skip this step.',
+      title: 'Infrastructure',
+      description: 'Let us know about hosting and technical infrastructure needs. You may skip this step.',
     },
     // Step 10
     {
       label: 'STEP 10 OF 11',
-      title: 'Budget Range',
-      description: 'Select the budget range that best fits your project. This helps us tailor our proposal.',
+      title: 'Timeline & Priority',
+      description: 'Share any deadlines or urgency around your project. You may skip this step.',
     },
     // Step 11
     {

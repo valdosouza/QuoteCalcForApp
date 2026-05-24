@@ -127,38 +127,39 @@ export function buildEmailHtml(data: Partial<QuoteFormData>): string {
       ${row('References', data.references)}
       ${row('Detailed description', data.detailedDescription)}
     `)}
-    ${section('STEP 3 — FEATURES', `
+    ${section('STEP 3 — LOGIN & AUTHENTICATION', `
       ${row('Login / Auth', loginFeatures)}
-      ${row('User types', (data.userTypes ?? []).join(', ') || undefined)}
-      ${row('App features', appFeatures)}
     `)}
-    ${section('STEP 4 — OPERATIONAL COMPLEXITY', `
+    ${section('STEP 4 — APP FEATURES', `
+      ${row('Features', appFeatures)}
+    `)}
+    ${section('STEP 5 — OPERATIONAL COMPLEXITY', `
       ${row('Admin panel', data.hasAdminPanel ? yesNoMap[data.hasAdminPanel] : undefined)}
       ${row('Different permissions', data.hasDifferentPermissions ? yesNoMap[data.hasDifferentPermissions] : undefined)}
       ${row('Offline mode', data.needsOffline ? yesNoMap[data.needsOffline] : undefined)}
     `)}
-    ${section('STEP 5 — INTEGRATIONS', `
+    ${section('STEP 6 — INTEGRATIONS', `
       ${row('Integrations', integrations)}
       ${row('Notes', data.integrationNotes)}
     `)}
-    ${section('STEP 6 — DESIGN & EXPERIENCE', `
+    ${section('STEP 7 — DESIGN & EXPERIENCE', `
       ${row('Visual identity', data.hasVisualIdentity ? visibilityMap[data.hasVisualIdentity] : undefined)}
       ${row('Needs UI/UX design', data.needsUXUI)}
       ${row('Has wireframes', data.hasWireframes)}
       ${row('Wants exclusive design', data.wantsExclusiveDesign)}
       ${row('Wants advanced animations', data.wantsAdvancedAnimations)}
     `)}
-    ${section('STEP 7 — CONTENT & ADMIN', `
+    ${section('STEP 8 — CONTENT & ADMIN', `
       ${row('Content managed by', data.contentManager)}
       ${row('Needs CMS', data.needsCMS)}
       ${row('User management', data.needsUserManagement)}
       ${row('Moderation', data.needsModeration)}
       ${row('Export reports', data.needsReportExport)}
     `)}
-    ${section('STEP 8 — INFRASTRUCTURE', `
+    ${section('STEP 9 — INFRASTRUCTURE', `
       ${row('Infrastructure', infrastructure)}
     `)}
-    ${section('STEP 9 — TIMELINE', `
+    ${section('STEP 10 — TIMELINE', `
       ${row('Has deadline', data.hasDeadline)}
       ${row('Deadline date', data.deadlineDate)}
       ${row('Urgent', data.isUrgent ? yesNoMap[data.isUrgent] : undefined)}

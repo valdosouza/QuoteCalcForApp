@@ -11,14 +11,15 @@ export interface QuoteFormData {
   references: string;
   detailedDescription: string;
 
-  // Step 3 – Core Features
+  // Step 3 – Login & Authentication
   loginEmail: boolean;
   loginGoogle: boolean;
   loginApple: boolean;
   loginFacebook: boolean;
   passwordRecovery: boolean;
   userProfile: boolean;
-  userTypes: string[]; // ['client','provider','admin']
+
+  // Step 4 – App Features
   featureChat: boolean;
   featurePushNotifications: boolean;
   featureGeolocation: boolean;
@@ -44,12 +45,12 @@ export interface QuoteFormData {
   featureSocialFeed: boolean;
   featurePremium: boolean;
 
-  // Step 4 – Operational Complexity
+  // Step 5 – Operational Complexity
   hasAdminPanel: 'yes' | 'no' | 'unsure';
   hasDifferentPermissions: 'yes' | 'no' | 'unsure';
   needsOffline: 'yes' | 'no' | 'unsure';
 
-  // Step 5 – External Integrations (optional)
+  // Step 6 – External Integrations (optional)
   integrationOwnAPI: boolean;
   integrationERP: boolean;
   integrationCRM: boolean;
@@ -58,21 +59,21 @@ export interface QuoteFormData {
   integrationSocialMedia: boolean;
   integrationNotes: string;
 
-  // Step 6 – Design & Experience
+  // Step 7 – Design & Experience
   hasVisualIdentity: 'yes' | 'no' | 'partial';
   needsUXUI: boolean;
   hasWireframes: boolean;
   wantsExclusiveDesign: boolean;
   wantsAdvancedAnimations: boolean;
 
-  // Step 7 – Content & Administration (optional)
+  // Step 8 – Content & Administration (optional)
   contentManager: string;
   needsCMS: boolean;
   needsUserManagement: boolean;
   needsModeration: boolean;
   needsReportExport: boolean;
 
-  // Step 8 – Infrastructure (optional)
+  // Step 9 – Infrastructure (optional)
   needsHosting: boolean;
   needsDatabase: boolean;
   needsOngoingSupport: boolean;
@@ -81,7 +82,7 @@ export interface QuoteFormData {
   needsCDN: boolean;
   needsAdvancedSecurity: boolean;
 
-  // Step 9 – Timeline (optional)
+  // Step 10 – Timeline & Priority (optional)
   hasDeadline: boolean;
   deadlineDate: string;
   isUrgent: 'yes' | 'no' | 'unsure';
@@ -89,7 +90,7 @@ export interface QuoteFormData {
   hasLaunchEvent: boolean;
   launchEventDetails: string;
 
-  // Step 10 – Contact
+  // Step 11 – Contact
   projectName: string;
   contactName: string;
   contactEmail: string;

@@ -28,7 +28,6 @@ const validPayload: QuoteFormData = {
   loginFacebook: false,
   passwordRecovery: true,
   userProfile: true,
-  userTypes: ['Client', 'Provider'],
   featureChat: true,
   featurePushNotifications: true,
   featureGeolocation: false,

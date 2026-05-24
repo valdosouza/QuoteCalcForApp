@@ -18,7 +18,7 @@ export const step2Schema = z.object({
   detailedDescription: z.string().optional(),
 });
 
-// Step 3 base (no refine - used for API schema merging)
+// Step 3 — Login & Authentication (base, no refine — for API schema merging)
 export const step3BaseSchema = z.object({
   loginEmail: z.boolean().optional(),
   loginGoogle: z.boolean().optional(),
@@ -26,7 +26,16 @@ export const step3BaseSchema = z.object({
   loginFacebook: z.boolean().optional(),
   passwordRecovery: z.boolean().optional(),
   userProfile: z.boolean().optional(),
-  userTypes: z.array(z.string()).optional(),
+});
+
+// Step 3 with at-least-one refine (used on wizard)
+export const step3Schema = step3BaseSchema.refine(
+  (data) => Object.values(data).some((v) => v === true),
+  { message: 'Please select at least one login option.' }
+);
+
+// Step 4 — App Features (base, no refine — for API schema merging)
+export const step4BaseSchema = z.object({
   featureChat: z.boolean().optional(),
   featurePushNotifications: z.boolean().optional(),
   featureGeolocation: z.boolean().optional(),
@@ -53,27 +62,21 @@ export const step3BaseSchema = z.object({
   featurePremium: z.boolean().optional(),
 });
 
-// Step 3 with at-least-one refine (used on wizard)
-export const step3Schema = step3BaseSchema.refine(
-  (data) => {
-    const hasBool = Object.entries(data)
-      .filter(([k]) => k !== 'userTypes')
-      .some(([, v]) => v === true);
-    const hasUserTypes = (data.userTypes ?? []).length > 0;
-    return hasBool || hasUserTypes;
-  },
+// Step 4 with at-least-one refine (used on wizard)
+export const step4Schema = step4BaseSchema.refine(
+  (data) => Object.values(data).some((v) => v === true),
   { message: 'Please select at least one feature.' }
 );
 
-// Step 4
-export const step4Schema = z.object({
+// Step 5 — Operational Complexity
+export const step5Schema = z.object({
   hasAdminPanel: z.enum(['yes', 'no', 'unsure'], { message: 'Please answer this question.' }),
   hasDifferentPermissions: z.enum(['yes', 'no', 'unsure'], { message: 'Please answer this question.' }),
   needsOffline: z.enum(['yes', 'no', 'unsure'], { message: 'Please answer this question.' }),
 });
 
-// Step 5 (optional)
-export const step5Schema = z.object({
+// Step 6 — External Integrations (optional)
+export const step6Schema = z.object({
   integrationOwnAPI: z.boolean().optional(),
   integrationERP: z.boolean().optional(),
   integrationCRM: z.boolean().optional(),
@@ -83,8 +86,8 @@ export const step5Schema = z.object({
   integrationNotes: z.string().optional(),
 });
 
-// Step 6
-export const step6Schema = z.object({
+// Step 7 — Design & Experience
+export const step7Schema = z.object({
   hasVisualIdentity: z.enum(['yes', 'no', 'partial'], { message: 'Please indicate your visual identity status.' }),
   needsUXUI: z.boolean().optional(),
   hasWireframes: z.boolean().optional(),
@@ -92,8 +95,8 @@ export const step6Schema = z.object({
   wantsAdvancedAnimations: z.boolean().optional(),
 });
 
-// Step 7 (optional)
-export const step7Schema = z.object({
+// Step 8 — Content & Administration (optional)
+export const step8Schema = z.object({
   contentManager: z.string().optional(),
   needsCMS: z.boolean().optional(),
   needsUserManagement: z.boolean().optional(),
@@ -101,8 +104,8 @@ export const step7Schema = z.object({
   needsReportExport: z.boolean().optional(),
 });
 
-// Step 8 (optional)
-export const step8Schema = z.object({
+// Step 9 — Infrastructure (optional)
+export const step9Schema = z.object({
   needsHosting: z.boolean().optional(),
   needsDatabase: z.boolean().optional(),
   needsOngoingSupport: z.boolean().optional(),
@@ -112,8 +115,8 @@ export const step8Schema = z.object({
   needsAdvancedSecurity: z.boolean().optional(),
 });
 
-// Step 9 (optional)
-export const step9Schema = z.object({
+// Step 10 — Timeline & Priority (optional)
+export const step10Schema = z.object({
   hasDeadline: z.boolean().optional(),
   deadlineDate: z.string().optional(),
   isUrgent: z.enum(['yes', 'no', 'unsure']).optional(),
@@ -122,8 +125,8 @@ export const step9Schema = z.object({
   launchEventDetails: z.string().optional(),
 });
 
-// Step 10
-export const step10Schema = z.object({
+// Step 11 — Contact Details
+export const step11Schema = z.object({
   projectName: z.string().min(1, 'Project name is required.'),
   contactName: z.string().min(2, 'Your name is required.'),
   contactEmail: z.string().email('Please enter a valid email address.'),
@@ -133,17 +136,18 @@ export const step10Schema = z.object({
     .regex(/^[+\d\s\-()]+$/, 'Please enter a valid phone number.'),
 });
 
-// Full schema for API validation (uses base step3 - no ZodEffects)
+// Full schema for API validation (uses base schemas — no ZodEffects)
 export const fullSchema = step1Schema
   .merge(step2Schema)
   .merge(step3BaseSchema)
-  .merge(step4Schema)
+  .merge(step4BaseSchema)
   .merge(step5Schema)
   .merge(step6Schema)
   .merge(step7Schema)
   .merge(step8Schema)
   .merge(step9Schema)
-  .merge(step10Schema);
+  .merge(step10Schema)
+  .merge(step11Schema);
 
 // Per-step schemas for the wizard (index 0 = step 1)
 export const stepSchemas = [
@@ -157,4 +161,5 @@ export const stepSchemas = [
   step8Schema,
   step9Schema,
   step10Schema,
+  step11Schema,
 ];

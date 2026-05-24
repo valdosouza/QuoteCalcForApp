@@ -161,8 +161,9 @@ html, body {
   color: var(--cinza-txt); text-transform: uppercase; margin-bottom: 10px;
 }
 
-.checkbox-grid            { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.checkbox-grid.single-col { grid-template-columns: 1fr; }
+.checkbox-grid              { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.checkbox-grid.single-col   { grid-template-columns: 1fr; }
+.checkbox-grid.checkbox-grid-2col { grid-template-columns: 1fr 1fr; }
 
 .checkbox-option {
   display: flex;
@@ -405,4 +406,5 @@ html, body {
   .intro-inner, .thankyou-wrapper { padding: 36px 20px 32px; }
   .intro-title { font-size: 22px; }
   .checkbox-grid { grid-template-columns: 1fr; }
+  .checkbox-grid.checkbox-grid-2col { grid-template-columns: 1fr 1fr; }
 }

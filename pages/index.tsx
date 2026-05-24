@@ -6,8 +6,8 @@ import type { QuoteFormData } from '../lib/types';
 import { stepSchemas } from '../lib/schemas';
 import { en } from '../locales/en';
 
-const TOTAL_STEPS = 10;
-const OPTIONAL_STEPS = new Set([5, 7, 8, 9]);
+const TOTAL_STEPS = 11;
+const OPTIONAL_STEPS = new Set([6, 8, 9, 10]);
 
 // ─── Progress Bar ─────────────────────────────────────────────────────────────
 function ProgressBar({ current }: { current: number }) {
@@ -136,20 +136,11 @@ function Step2() {
   );
 }
 
-// ─── Step 3 — Core Features ──────────────────────────────────────────────────
-const USER_TYPES_LIST = ['Client', 'Provider', 'Administrator'];
-
+// ─── Step 3 — Login & Authentication ────────────────────────────────────────
 function Step3() {
-  const { watch, setValue } = useFormContext<QuoteFormData>();
-  const userTypes: string[] = watch('userTypes') ?? [];
-  const toggleUserType = (t: string) => {
-    const next = userTypes.includes(t) ? userTypes.filter((x) => x !== t) : [...userTypes, t];
-    setValue('userTypes', next, { shouldValidate: true });
-  };
   return (
     <div className="form-content">
       <div className="checkbox-section">
-        <div className="checkbox-section-title">Login and Authentication</div>
         <div className="checkbox-grid">
           <CheckboxItem name="loginEmail" label="Email and password" />
           <CheckboxItem name="loginGoogle" label="Google login" />
@@ -159,20 +150,16 @@ function Step3() {
           <CheckboxItem name="userProfile" label="User profile" />
         </div>
       </div>
+    </div>
+  );
+}
+
+// ─── Step 4 — App Features ───────────────────────────────────────────────────
+function Step4() {
+  return (
+    <div className="form-content">
       <div className="checkbox-section">
-        <div className="checkbox-section-title">User Types</div>
-        <div className="checkbox-grid">
-          {USER_TYPES_LIST.map((t) => (
-            <label key={t} className={`checkbox-option${userTypes.includes(t) ? ' checked' : ''}`} onClick={() => toggleUserType(t)}>
-              <input type="checkbox" readOnly checked={userTypes.includes(t)} />
-              <span className="checkbox-label">{t}</span>
-            </label>
-          ))}
-        </div>
-      </div>
-      <div className="checkbox-section">
-        <div className="checkbox-section-title">App Features</div>
-        <div className="checkbox-grid">
+        <div className="checkbox-grid checkbox-grid-2col">
           <CheckboxItem name="featureChat" label="Chat" />
           <CheckboxItem name="featurePushNotifications" label="Push Notifications" />
           <CheckboxItem name="featureGeolocation" label="Geolocation / GPS" />
@@ -203,8 +190,8 @@ function Step3() {
   );
 }
 
-// ─── Step 4 — Operational Complexity ────────────────────────────────────────
-function Step4() {
+// ─── Step 5 — Operational Complexity ────────────────────────────────────────
+function Step5() {
   const { formState: { errors } } = useFormContext<QuoteFormData>();
   return (
     <div className="form-content">
@@ -218,8 +205,8 @@ function Step4() {
   );
 }
 
-// ─── Step 5 — External Integrations (optional) ──────────────────────────────
-function Step5() {
+// ─── Step 6 — External Integrations (optional) ──────────────────────────────
+function Step6() {
   const { register } = useFormContext<QuoteFormData>();
   return (
     <div className="form-content">
@@ -242,14 +229,14 @@ function Step5() {
   );
 }
 
-// ─── Step 6 — Design and Experience ────────────────────────────────────────
+// ─── Step 7 — Design and Experience ─────────────────────────────────────────
 const VIS_IDENTITY_OPTS = [
   { value: 'yes', label: 'Yes', desc: 'We have logo, brand colours, and guidelines' },
   { value: 'partial', label: 'Partial', desc: 'We have some elements but need help' },
   { value: 'no', label: 'No', desc: 'We need everything designed from scratch' },
 ];
 
-function Step6() {
+function Step7() {
   const { register, watch, setValue, formState: { errors } } = useFormContext<QuoteFormData>();
   const current = watch('hasVisualIdentity');
   return (
@@ -283,8 +270,8 @@ function Step6() {
   );
 }
 
-// ─── Step 7 — Content and Administration (optional) ─────────────────────────
-function Step7() {
+// ─── Step 8 — Content and Administration (optional) ─────────────────────────
+function Step8() {
   const { register } = useFormContext<QuoteFormData>();
   return (
     <div className="form-content">
@@ -305,8 +292,8 @@ function Step7() {
   );
 }
 
-// ─── Step 8 — Infrastructure (optional) ─────────────────────────────────────
-function Step8() {
+// ─── Step 9 — Infrastructure (optional) ─────────────────────────────────────
+function Step9() {
   return (
     <div className="form-content">
       <div className="checkbox-section">
@@ -325,8 +312,8 @@ function Step8() {
   );
 }
 
-// ─── Step 9 — Timeline (optional) ───────────────────────────────────────────
-function Step9() {
+// ─── Step 10 — Timeline & Priority (optional) ────────────────────────────────
+function Step10() {
   const { register, watch, setValue } = useFormContext<QuoteFormData>();
   const hasDeadline = watch('hasDeadline');
   const hasLaunchEvent = watch('hasLaunchEvent');
@@ -374,8 +361,8 @@ function Step9() {
   );
 }
 
-// ─── Step 10 — Contact Details ───────────────────────────────────────────────
-function Step10() {
+// ─── Step 11 — Contact Details ───────────────────────────────────────────────
+function Step11() {
   const { register, formState: { errors } } = useFormContext<QuoteFormData>();
   return (
     <div className="form-content">
@@ -452,13 +439,13 @@ function StepContent({ step }: { step: number }) {
     case 8: return <Step8 />;
     case 9: return <Step9 />;
     case 10: return <Step10 />;
+    case 11: return <Step11 />;
     default: return null;
   }
 }
 
 // ─── Default form values ──────────────────────────────────────────────────────
 const DEFAULT_VALUES: Partial<QuoteFormData> = {
-  userTypes: [],
   loginEmail: false, loginGoogle: false, loginApple: false, loginFacebook: false,
   passwordRecovery: false, userProfile: false,
   featureChat: false, featurePushNotifications: false, featureGeolocation: false,
