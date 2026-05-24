@@ -1,0 +1,35 @@
+{
+  "name": "quotecalc",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.4.2",
+    "caniuse-lite": "^1.0.30001793",
+    "next": "13.5.11",
+    "nodemailer": "^6.9.13",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hook-form": "^7.51.3",
+    "zod": "^3.23.4"
+  },
+  "devDependencies": {
+    "@next/swc-win32-x64-msvc": "^16.2.6",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20",
+    "@types/nodemailer": "^6.4.15",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "dotenv": "^17.4.2",
+    "jest": "^29.7.0",
+    "node-mocks-http": "^1.17.2",
+    "ts-jest": "^29.4.11",
+    "typescript": "^5"
+  }
+}
