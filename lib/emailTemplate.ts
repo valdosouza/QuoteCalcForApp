@@ -6,8 +6,8 @@ const row = (label: string, value: string | boolean | undefined) => {
   if (!display) return '';
   return `
     <tr>
-      <td style="padding:6px 12px;color:#94a3b8;font-size:13px;white-space:nowrap;vertical-align:top;">${label}</td>
-      <td style="padding:6px 12px;color:#e2e8f0;font-size:13px;">${display}</td>
+      <td style="padding:6px 16px;color:#555e6d;font-size:13px;white-space:nowrap;vertical-align:top;width:180px;">${label}</td>
+      <td style="padding:6px 16px;color:#2b3344;font-size:13px;">${display}</td>
     </tr>`;
 };
 
@@ -16,7 +16,7 @@ const section = (title: string, rows: string) => {
   if (!content) return '';
   return `
   <tr>
-    <td colspan="2" style="padding:16px 12px 4px;font-size:11px;font-weight:700;letter-spacing:1.5px;color:#4f8ef7;text-transform:uppercase;border-top:1px solid #1e2035;">${title}</td>
+    <td colspan="2" style="padding:16px 16px 6px;font-size:11px;font-weight:700;letter-spacing:1.5px;color:#1a4fa0;text-transform:uppercase;border-top:1px solid #dce3ef;background:#f5f7fb;">${title}</td>
   </tr>
   ${content}`;
 };
@@ -166,29 +166,30 @@ export function buildEmailHtml(data: Partial<QuoteFormData>): string {
       ${row('Has launch event', data.hasLaunchEvent)}
       ${row('Launch event details', data.launchEventDetails)}
     `)}
-    ${section('STEP 10 — BUDGET', `
-      ${row('Budget range', data.budgetRange)}
-    `)}
   `;
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>New Quote Request</title></head>
-<body style="margin:0;padding:0;background:#0a0a14;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="max-width:680px;margin:32px auto;background:#12121e;border-radius:12px;border:1px solid #1e2035;overflow:hidden;">
+<body style="margin:0;padding:0;background:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="max-width:680px;margin:32px auto;background:#ffffff;border-radius:12px;border:1px solid #dce3ef;overflow:hidden;box-shadow:0 4px 20px rgba(26,79,160,.1);">
     <tr>
-      <td colspan="2" style="padding:28px 24px 20px;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);">
-        <p style="margin:0 0 4px;font-size:12px;color:#4f8ef7;font-weight:700;letter-spacing:2px;text-transform:uppercase;">Setes — New Quote Request</p>
-        <h1 style="margin:0;font-size:22px;font-weight:700;color:#f1f5f9;">${data.projectName || 'Untitled Project'}</h1>
-        <p style="margin:8px 0 0;font-size:13px;color:#64748b;">Submitted by ${data.contactName || '—'} · ${new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+      <td colspan="2" style="padding:28px 24px 22px;background:linear-gradient(135deg,#0f2d5c 0%,#1a4fa0 60%,#2d72d9 100%);">
+        <p style="margin:0 0 6px;font-size:11px;color:rgba(255,255,255,.7);font-weight:700;letter-spacing:2px;text-transform:uppercase;">Setes — New Quote Request</p>
+        <h1 style="margin:0;font-size:22px;font-weight:800;color:#ffffff;">${data.projectName || 'Untitled Project'}</h1>
+        <p style="margin:8px 0 0;font-size:13px;color:rgba(255,255,255,.75);">Submitted by ${data.contactName || '—'} · ${new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
       </td>
     </tr>
-    <table width="100%" cellpadding="0" cellspacing="0">
-      ${rows}
-    </table>
     <tr>
-      <td colspan="2" style="padding:20px 24px;border-top:1px solid #1e2035;">
-        <p style="margin:0;font-size:12px;color:#475569;text-align:center;">This quote request was submitted via the Setes Quote Calculator</p>
+      <td colspan="2" style="padding:0;">
+        <table width="100%" cellpadding="0" cellspacing="0">
+          ${rows}
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="padding:20px 24px;border-top:1px solid #dce3ef;background:#f5f7fb;">
+        <p style="margin:0;font-size:12px;color:#555e6d;text-align:center;">This quote request was submitted via the Setes Quote Calculator</p>
       </td>
     </tr>
   </table>
@@ -201,7 +202,6 @@ export function buildEmailText(data: Partial<QuoteFormData>): string {
 Contact: ${data.contactName} | ${data.contactEmail} | ${data.contactWhatsApp}
 Platform: ${data.appType}
 Objective: ${data.objective}
-Budget: ${data.budgetRange}
 Submitted: ${new Date().toISOString()}
 `;
 }

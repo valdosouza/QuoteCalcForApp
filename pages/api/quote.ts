@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     await transporter.sendMail({
       from: `"Setes Quote Calculator" <${process.env.SMTP_USER}>`,
-      to: 'sales@setes.ie',
+      to: process.env.SMTP_TO ?? process.env.SMTP_USER,
       replyTo: data.contactEmail,
       subject: `New Quote Request — ${data.projectName} (${data.appType})`,
       text: buildEmailText(data),

@@ -6,7 +6,7 @@ import type { QuoteFormData } from '../lib/types';
 import { stepSchemas } from '../lib/schemas';
 import { en } from '../locales/en';
 
-const TOTAL_STEPS = 11;
+const TOTAL_STEPS = 10;
 const OPTIONAL_STEPS = new Set([5, 7, 8, 9]);
 
 // ─── Progress Bar ─────────────────────────────────────────────────────────────
@@ -374,37 +374,8 @@ function Step9() {
   );
 }
 
-// ─── Step 10 — Budget ────────────────────────────────────────────────────────
-const BUDGET_RANGES = [
-  'Under 5,000 EUR',
-  '5,000 to 15,000 EUR',
-  '15,000 to 30,000 EUR',
-  '30,000 to 60,000 EUR',
-  '60,000 to 100,000 EUR',
-  'Over 100,000 EUR',
-  'I am not sure yet',
-];
-
+// ─── Step 10 — Contact Details ───────────────────────────────────────────────
 function Step10() {
-  const { register, watch, setValue, formState: { errors } } = useFormContext<QuoteFormData>();
-  const current = watch('budgetRange');
-  return (
-    <div className="form-content">
-      <div className="radio-group">
-        {BUDGET_RANGES.map((range) => (
-          <label key={range} className={`radio-option${current === range ? ' selected' : ''}`}>
-            <input type="radio" value={range} {...register('budgetRange')} onChange={() => setValue('budgetRange', range, { shouldValidate: true })} />
-            <div className="radio-label">{range}</div>
-          </label>
-        ))}
-      </div>
-      {errors.budgetRange && <p className="field-error" style={{ marginTop: 12 }}>{errors.budgetRange.message}</p>}
-    </div>
-  );
-}
-
-// ─── Step 11 — Contact Details ───────────────────────────────────────────────
-function Step11() {
   const { register, formState: { errors } } = useFormContext<QuoteFormData>();
   return (
     <div className="form-content">
@@ -436,19 +407,21 @@ function Step11() {
 function Intro({ onStart }: { onStart: () => void }) {
   return (
     <div className="intro-wrapper">
-      <div className="intro-logo">Setes</div>
-      <div className="intro-badge">Free Quote — No Credit Card Required</div>
-      <h1 className="intro-title">{en.intro.title}</h1>
-      <p className="intro-description">{en.intro.description}</p>
-      <div className="intro-features">
-        {en.intro.features.map((f) => (
-          <div key={f} className="intro-feature">
-            <div className="intro-feature-dot" />
-            {f}
-          </div>
-        ))}
+      <div className="intro-inner">
+        <div className="intro-logo">Setes</div>
+        <div className="intro-badge">Free Quote — No Credit Card Required</div>
+        <h1 className="intro-title">{en.intro.title}</h1>
+        <p className="intro-description">{en.intro.description}</p>
+        <div className="intro-features">
+          {en.intro.features.map((f) => (
+            <div key={f} className="intro-feature">
+              <div className="intro-feature-dot" />
+              {f}
+            </div>
+          ))}
+        </div>
+        <button className="btn-cta" onClick={onStart}>{en.intro.cta} &rarr;</button>
       </div>
-      <button className="btn-cta" onClick={onStart}>{en.intro.cta} &rarr;</button>
     </div>
   );
 }
@@ -479,7 +452,6 @@ function StepContent({ step }: { step: number }) {
     case 8: return <Step8 />;
     case 9: return <Step9 />;
     case 10: return <Step10 />;
-    case 11: return <Step11 />;
     default: return null;
   }
 }

@@ -86,7 +86,6 @@ const validPayload: QuoteFormData = {
   priority: 'medium',
   hasLaunchEvent: false,
   launchEventDetails: '',
-  budgetRange: '15,000 to 30,000 EUR',
   projectName: 'TradesConnect',
   contactName: 'Jane Smith',
   contactEmail: 'jane@example.com',
@@ -103,6 +102,7 @@ describe('POST /api/quote', () => {
     process.env.SMTP_SECURE = 'false';
     process.env.SMTP_USER = 'test@setes.ie';
     process.env.SMTP_PASS = 'secret';
+    process.env.SMTP_TO = 'sales@setes.ie';
   });
 
   test('rejects non-POST requests with 405', async () => {
@@ -190,11 +190,6 @@ describe('buildEmailHtml', () => {
     expect(streamingRowCount).toBe(0);
   });
 
-  test('includes budget range', () => {
-    const html = buildEmailHtml(validPayload);
-    expect(html).toContain('15,000 to 30,000 EUR');
-  });
-
   test('returns valid HTML string', () => {
     const html = buildEmailHtml(validPayload);
     expect(html).toMatch(/^<!DOCTYPE html>/);
@@ -208,6 +203,5 @@ describe('buildEmailText', () => {
     expect(text).toContain('TradesConnect');
     expect(text).toContain('jane@example.com');
     expect(text).toContain('both');
-    expect(text).toContain('15,000 to 30,000 EUR');
   });
 });

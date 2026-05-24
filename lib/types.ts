@@ -89,10 +89,7 @@ export interface QuoteFormData {
   hasLaunchEvent: boolean;
   launchEventDetails: string;
 
-  // Step 10 – Budget
-  budgetRange: string;
-
-  // Step 11 – Contact
+  // Step 10 – Contact
   projectName: string;
   contactName: string;
   contactEmail: string;

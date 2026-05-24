@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:3000/)",
+      "Read(//c/Users/Valdo/AppData/Local/Temp/**)",
+      "Bash(npx tsc *)",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(npx jest *)",
+      "Bash(Test-Path \"d:\\\\GestaoApps\\\\QuoteCalcForApp\\\\node_modules\\\\dotenv\")",
+      "Bash(nslookup smtp.setes.com.br)"
+    ]
+  }
+}

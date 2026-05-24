@@ -13,7 +13,6 @@ const payload: Partial<QuoteFormData> = {
   contactWhatsApp: '+55 11 99999-9999',
   appType: 'both',
   objective: 'Validar o envio de e-mail pelo QuoteCalc via SMTP real.',
-  budgetRange: '15,000 to 30,000 EUR',
   hasAdminPanel: 'yes',
   featureChat: true,
   featurePayments: true,

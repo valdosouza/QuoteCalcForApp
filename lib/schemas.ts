@@ -124,11 +124,6 @@ export const step9Schema = z.object({
 
 // Step 10
 export const step10Schema = z.object({
-  budgetRange: z.string().min(1, 'Please select a budget range.'),
-});
-
-// Step 11
-export const step11Schema = z.object({
   projectName: z.string().min(1, 'Project name is required.'),
   contactName: z.string().min(2, 'Your name is required.'),
   contactEmail: z.string().email('Please enter a valid email address.'),
@@ -148,8 +143,7 @@ export const fullSchema = step1Schema
   .merge(step7Schema)
   .merge(step8Schema)
   .merge(step9Schema)
-  .merge(step10Schema)
-  .merge(step11Schema);
+  .merge(step10Schema);
 
 // Per-step schemas for the wizard (index 0 = step 1)
 export const stepSchemas = [
@@ -163,5 +157,4 @@ export const stepSchemas = [
   step8Schema,
   step9Schema,
   step10Schema,
-  step11Schema,
 ];
